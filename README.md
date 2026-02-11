@@ -36,7 +36,7 @@ Our Next step will be breaking down data into male and female group, so we will 
 The first thing we can see is that Barbie clearly dominates in female chart, and on the other hand we can see that films in male chart are slightly more equally distributed. We can also notice that all popular films differ between each gender, so each movie has a greater impact on recommendations among its audiences gender, but not by far because we have a lot of other parameters as well. 
 
 So for example imagine that we have two films that have pretty similar genres, one is more popular among men, and other is more popular among women. If user who wants to get a recommendation has preferences that approximately coincide with these two films genres and is male, he will get first one, but if female, she will get the second one. 
-## Dividing By Gender And Age
+### Dividing By Gender And Age
 Now we will go further and divide our gender groups into age groups, so we will see how trends differ through years.
 
 ![Most Popular Films Divided By Gender And Age](charts/most_popular_films_divided_by_gender_and_age.png)
