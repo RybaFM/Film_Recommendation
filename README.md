@@ -25,7 +25,7 @@ Firstly we need to look at general peoples preferences in films. Below you can f
 
 We can clearly see that Barbie is far ahead from others, we can also see that Matrix and Inception have noticably more fans than others below. These three films fanbase forms about one third of all fans in our dataset, since we have 300 users and these films have around 100 fans. That can mean two things:
 - Their clusters are spread and since that are big and thats why generaly we will see our model recommending them more frequently, model will be not that confident though.
-- Their clusters are very dence and since that we won't see them being recommended more often generally, but our model will be much more confident locally. 
+- Their clusters are very dense and since that we won't see them being recommended more often generally, but our model will be much more confident locally. 
 ### Dividing By Gender
 Our Next step will be breaking down data into male and female group, so we will see how trends differ based on gender.
 
