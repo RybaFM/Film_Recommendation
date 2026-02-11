@@ -20,6 +20,7 @@ Analysis is divided into two parts. First part will be dedicated to analysis of 
 Firstly we need to look at general peoples preferences in films. Below you can find a chart that shows films popularity based on how many people like it. Through the analysis of data I will analyze popularity of top-3 films from this chart.
 
 ![Most Popular Films](charts/most_popular_films.png)
+
 *This chart shows the most popular films, with each bar representing a film title and its corresponding amount of fans.*
 
 We can clearly see that Barbie is far ahead from others, we can also see that Matrix and Inception have noticably more fans than others below. These three films fanbase forms about one third of all fans in our dataset, since we have 300 users and these films have around 100 fans. That can mean two things:
@@ -29,6 +30,7 @@ We can clearly see that Barbie is far ahead from others, we can also see that Ma
 Our Next step will be breaking down data into male and female group, so we will see how trends differ based on gender.
 
 ![Most Popular Films Divided By Gender](charts/most_popular_films_divided_by_gender.png)
+
 *This chart shows the most popular films in each gender group, with each bar representing a film title and its corresponding amount of fans.*
 
 The first thing we can see is that Barbie clearly dominates in female chart, and on the other hand we can see that films in male chart are slightly more equally distributed. We can also notice that all popular films differ between each gender, so each movie has a greater impact on recommendations among its audiences gender, but not by far because we have a lot of other parameters as well. 
@@ -38,6 +40,7 @@ So for example imagine that we have two films that have pretty similar genres, o
 Now we will fgo further and divide our gender groups into age groups, so we will see how trends differ through years.
 
 ![Most Popular Films Divided By Gender And Age](charts/most_popular_films_divided_by_gender_and_age.png)
+
 *This chart shows the most popular films in each age group, with each bar representing a film title and its corresponding amount of fans.*
 
 So again the first thing we can see in these charts is that Barbie is the most popular film among women that are 18-29y.o. by far. That means that Barbie cluster is very dense in that region. But we can see that Barbie appears in top-5 most popular films among every age group, which means that it is not only dense in some regions, but spread as well. That means that we will see model recommending this film generally pretty often and those recommendations will be very confident in many zones.
