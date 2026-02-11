@@ -1,0 +1,36 @@
+movie_id,film_name,Action,Drama,Comedy,Romance,SciFi,Horror,Thriller,Fantasy,Animation,Crime
+1,Inception,1,0,0,0,1,0,1,1,0,1
+2,Titanic,0,1,0,1,0,0,0,0,0,0
+3,The Dark Knight,1,1,0,0,0,0,1,0,0,1
+4,La La Land,0,1,1,1,0,0,0,0,0,0
+5,Avengers,1,0,0,0,1,0,0,1,0,0
+6,The Notebook,0,1,0,1,0,0,0,0,0,0
+7,Interstellar,1,1,0,0,1,0,1,1,0,0
+8,Pride and Prejudice,0,1,0,1,0,0,0,0,0,0
+9,The Hangover,0,0,1,0,0,0,0,0,0,0
+10,John Wick,1,0,0,0,0,0,1,0,0,1
+11,Barbie,0,1,1,1,0,0,0,1,1,0
+12,Gladiator,1,1,0,0,0,0,0,0,0,1
+13,The Fault in Our Stars,0,1,0,1,0,0,0,0,0,0
+14,Matrix,1,0,0,0,1,0,1,1,0,0
+15,Forrest Gump,0,1,1,1,0,0,0,0,0,0
+16,Shutter Island,0,1,0,0,0,0,1,0,0,1
+17,The Conjuring,0,0,0,0,0,1,1,0,0,0
+18,Deadpool,1,0,1,0,0,0,0,0,0,0
+19,Harry Potter,0,1,0,0,0,0,0,1,0,0
+20,Toy Story,0,0,1,0,0,0,0,0,1,0
+21,Joker,0,1,0,0,0,0,1,0,0,1
+22,The Godfather,0,1,0,0,0,0,0,0,0,1
+23,The Shawshank Redemption,0,1,0,0,0,0,0,0,0,0
+24,Parasite,0,1,0,0,0,0,1,0,0,1
+25,The Wolf of Wall Street,0,1,1,0,0,0,0,0,0,1
+26,Spider-Man,1,0,0,0,0,0,0,1,0,0
+27,It,0,0,0,0,0,1,1,0,0,0
+28,Up,0,1,1,0,0,0,0,0,1,0
+29,The Social Network,0,1,0,0,0,0,0,0,0,0
+30,Blade Runner 2049,1,1,0,0,1,0,1,0,0,0
+31,The Lion King,0,1,0,0,0,0,0,0,1,0
+32,Mad Max Fury Road,1,0,0,0,0,0,1,0,0,0
+33,Get Out,0,0,0,0,0,1,1,0,0,0
+34,Doctor Strange,1,0,0,0,1,0,0,1,0,0
+35,The Silence of the Lambs,0,1,0,0,0,1,1,0,0,1
