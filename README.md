@@ -43,10 +43,55 @@ Now we will go further and divide our gender groups into age groups, so we will 
 
 *This chart shows the most popular films in each age group, with each bar representing a film title and its corresponding amount of fans.*
 
-So again the first thing we can see in these charts is that Barbie is the most popular film among women that are 18-29y.o. by far. That means that Barbie cluster is very dense in that region. But we can see that Barbie appears in top-5 most popular films among every age group, which means that it is not only dense in some regions, but spread as well. That means that we will see model recommending this film generally pretty often and those recommendations will be very confident in many zones.
+So again the first thing we can see in these charts is that Barbie is the most popular film among women that are 18-29y.o. by far. That means that Barbie cluster is likely to be dense in that region. But we can see that Barbie appears in top-5 most popular films among every age group, which means that it is not only dense in some regions, but spread as well. That means that we will see model recommending this film generally pretty often and those recommendations will be very confident in many zones.
 
 Other two films from general top-3 films we can see in male charts. They appear in almost every age group, they dominate, but not that much comparing to Barbie in female charts. That means, that their clusters are big, but not especially dense, thats why, we know that their probability to be recommended is potentially high, but those recommendations won't be as confident as Barbies, but still confident in age groups below 40 y.o., later they are no more that popular.
 ## Analysis Of Performance Of KNN-model predictions
-Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users.
+Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users. **Lets consider the task:** we have dataset of users with their preferences in genres with their favorite films, new user just signed in our app, provided all needed info and checked all the genres he/she likes. Our first priority is to recommend a film the user will like on their first visit, increasing the chance they stay engaged with the app. 
+```python
+pipe = Pipeline([
+    ("scale", StandardScaler()),
+    ("model", KNeighborsClassifier(n_neighbors=1))
+])
+
+mod = GridSearchCV(estimator=pipe,
+                   param_grid={'model__n_neighbors':[3,4,5,6,7,8,9,10], 'model__weights': ['uniform', 'distance']},
+                   cv=3)
+
+mod.fit(X, y)
+def make_recommendation(user_info, mod, df_films):
+  film_id = mod.predict(user_info)
+  return (int(film_id[0]), 
+          df_films[df_films['movie_id'] == film_id[0]].iloc[0, 1])
+```
+**Code explanation:** since our user doesn't have any watched movies we can not use item-based model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. I gave the model data to learn(X - users info, y - favorite movies) and provided function make_recommendation to test comfortably.
+### Testing
+*Note: liked genres, get score 10, other we set to 4*
+
+**General recommendation:** lets consider two person: 1) 30 y.o. woman that likes Drama, Romance and Fantasy and 2) 20 y.o. man that likes Action, SciFi and Fantasy
+```python
+rec_1 = make_recommendation(np.array([[30,0,4,10,4,10,4,4,4,10,4,4]]), mod, df_films)
+rec_2 = make_recommendation(np.array([[20,1,10,5,5,5,10,5,5,10,5,5]]), mod, df_films)
+``` 
+According to my analysis, for woman I expect to see something from Pride and Prejudice, La La Land, Forrest Gump, Titanic, The Notebook(their genres approximately coincide with preferences and they are popular), especially Pride and Prejudice because it is the most popular film among women 30-39 y.o. For man I expect to see something from Inception, Matrix or Interstellar, especially first two, because they dominate in age group up to 40 y.o.
+```
+Recomendation for first user(30 y.o. woman): (6, 'The Notebook')
+Recomendation for second user(20 y.o. man): (14, 'Matrix')
+```
+We got what we expected in general, user is happy.
+
+**Gender difference:** two people, same interests: Action and Fantasy, same age: 25 y.o., but different genders
+```python
+rec_1 = make_recommendation(np.array([[25,0,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
+rec_2 = make_recommendation(np.array([[25,1,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
+```
+The model sugests:
+```
+Recomendation for female-user: (11, 'Barbie')
+Recomendation for male-user: (30, 'Blade Runner 2049')
+```
+Barbie is very popular among women and Blade Runner 2049 is quite popular among men. Each recommendation matches one of the users genre preferences. At first glance, these suggestions might not seem perfectly aligned with the raw genre inputs, but I would still consider them solid, since they seem like realistic recommendations. I assume that each user is satisfied.
+
+**Age difference:**
 # What I learned
 # Conclusions
