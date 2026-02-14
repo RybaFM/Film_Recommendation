@@ -1,12 +1,20 @@
 # Introduction
-In this project I will analyze peoples preferences in films and then using machine learning I will be making recommendations for new users in system based on other users preferences.
+The goal of the project is to analyse user preferences in movies and built a machine learning-based recommendation system. The system focuses on recommending films to new users based on their demografic information and genre preferences.
 # Background
-I recently started playing with machine learning and especially with Scikit-learn. I was really looking forward to apply my new skills in machine-learning and to become on first-name terms with KNN-model. I decided to make user-based KNN-model that solves cold start problem.
+I recently started studying machine learning, especially using Scikit-learn. I wanted to apply my new skills in practice and gain a deeper understanding of the KNN algorithm. I decided to build a user-based KNN recommendation system that addresses the cold start problem, where SVD or item-based methods cannot be applied due to the lack of user history.
 ## In this project I will be aiming to:
 - find out what are most popular films among users
 - then I will divide data into male and female groups and analyse trends differences between genders
 - then I will go further and divide existing groups into age subgroups and analyse how trends differ between different age groups
 - then I will give to a KNN-model data and we will look how accurately it will be recommending films to certain people based on their preferences in genres.
+# Dataset
+The dataset contains 300 users with information about:
+- age
+- gender
+- genre preferences
+- favorite movie
+
+This data is synthetic and was created for educational purposes.
 # Tools I Used
 - **Python** - main programming language
 - **NumPy** - numerical operations
@@ -14,7 +22,7 @@ I recently started playing with machine learning and especially with Scikit-lear
 - **Matplotlib & Seaborn** - data visualization
 - **Scikit-learn** - making recommendations 
 # The Analysis
-Analysis is divided into two parts. First part will be dedicated to analysis of data itself, data has a lot of biases and stereotypes based on age and gender though, but it was meant to make those two parameters play a role in recommendations. In the second part I will analyze how accurately my model is making recommendations.
+Analysis is divided into two parts. First part will be dedicated to analysis of data itself. In the second part I will analyze how accurately my model is making recommendations.
 ## Analysis Of Data
 ### General Look
 Firstly we need to look at general peoples preferences in films. Below you can find a chart that shows films popularity based on how many people like it. Through the analysis of data I will analyze popularity of top-3 films from this chart.
@@ -111,5 +119,15 @@ Recomendation for 55 y.o. woman: (8, 'Pride and Prejudice')
 Barbie for the first case is obvious. Second one is less precise since only half on genres are covered(La La Land would cover 3/4 genres), but it is more popular than others at that age group, so it is nice pick. Both users enjoyed recommendations.
 # What I Learned
 I mastered my skills at understanding KNN and practised in making analysis. While doing research I also learned which methods are usually used in recommedation systems.
+# Limitations
+- dataset is relatively small (300 users)
+- users have only one favorite movie, which limits preference representation
+- no real user feedback (yet)
+- dataset is synthetic and may bot fully reflect real user behavior
+# Future Improvements
+- collect user feedback
+- implement probability of each film being liked
+- implement Naive Bayes for deciding if feedback was positive or negative and update films probability of being liked
+- make KNN recommend only those films that have relatively high probability of being liked
 # Conclusions
 As a result, we analyzed movie trends and built a reliable recommendation system for new users that solves the cold start problem, where SVD or item-based KNN cannot be applied. 
