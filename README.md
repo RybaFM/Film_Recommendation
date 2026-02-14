@@ -94,6 +94,18 @@ Recomendation for male-user: (30, 'Blade Runner 2049')
 ```
 Barbie is very popular among women and Blade Runner 2049 is quite popular among men. Each recommendation matches one of the users genre preferences. At first glance, these suggestions might not seem perfectly aligned with the raw genre inputs, but I would still consider them solid, since they seem like realistic recommendations. I assume that each user is satisfied.
 
-**Age difference:**
+**Age difference:** two people, same interests: Drama, Comedy, Romance, Crime, same gender, but different age: 20 y.o. and 55 y.o.
+```python
+rec_1 = make_recommendation(np.array([[20,0,4,10,10,10,4,4,4,4,4,10]]),
+                            mod, df_films)
+rec_2 = make_recommendation(np.array([[55,0,4,10,10,10,4,4,4,4,4,10]]),
+                            mod, df_films)
+```
+For the first one I expect to see Barbie, because preferences coincide with films genres and it is especially popular in this age group. For the second one it can be Barbie as well, but in this age Pride and Prejudice dominates so it will be more expected. La La Land is also possible since it is popular in age group 40-49, which can infuence recommendation, since it has more matches in genres than Pride and Prejudice.
+```
+Recomendation for 20 y.o. woman: (11, 'Barbie')
+Recomendation for 55 y.o. woman: (8, 'Pride and Prejudice')
+```
+Barbie for first case is obvious, as I said earlier it coincides with interests and popular in this age group. Second one is less precise since only half on genres are covered(La La Land would cover 3/4 genres), but it is more popular than other at that age group, so it is nice pick.
 # What I learned
 # Conclusions
