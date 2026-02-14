@@ -47,7 +47,9 @@ So again the first thing we can see in these charts is that Barbie is the most p
 
 Other two films from general top-3 films we can see in male charts. They appear in almost every age group, they dominate, but not that much comparing to Barbie in female charts. That means, that their clusters are big, but not especially dense, thats why, we know that their probability to be recommended is potentially high, but those recommendations won't be as confident as Barbies, but still confident in age groups below 40 y.o., later they are no more that popular.
 ## Analysis Of Performance Of KNN-model predictions
-Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users. **Lets consider the task:** we have dataset of users with their preferences in genres with their favorite films, new user just signed in our app, provided all needed info and checked all the genres he/she likes. Our first priority is to recommend a film the user will like on their first visit, increasing the chance they stay engaged with the app. 
+Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users. 
+
+**Lets consider the task:** we have dataset of users with their preferences in genres with their favorite films, new user just signed up for our app, provided all needed info and checked all the genres he/she likes. Our first priority is to recommend a film the user will like on their first visit, increasing the chance they stay engaged with the app. 
 ```python
 pipe = Pipeline([
     ("scale", StandardScaler()),
