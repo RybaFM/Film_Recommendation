@@ -1,13 +1,13 @@
 # Introduction
-In this project I will analyze peoples preferences in films and then using machine learning I will be making recommendations for new users based on other users preferences.
+In this project I will analyze peoples preferences in films and then using machine learning I will be making recommendations for new users in system based on other users preferences.
 # Background
-I recently started playing with machine learning and especially with Scikit-learn. I was really looking forward to apply my new skills in machine-learning and to become on first-name terms with KNN-model. I decided to make user-based KNN-model that will analyse already existing users preferences and after that will be making recommendations for new users in system.
+I recently started playing with machine learning and especially with Scikit-learn. I was really looking forward to apply my new skills in machine-learning and to become on first-name terms with KNN-model. I decided to make user-based KNN-model that solves cold start problem.
 ## In this project I will be aiming to:
 - find out what are most popular films among users
-- then I will break down data into male and female groups and analyse trends differences between genders
-- then I will go further and break down existing groups into age subgroups and analyse how trends differ between different age groups
+- then I will divide data into male and female groups and analyse trends differences between genders
+- then I will go further and divide existing groups into age subgroups and analyse how trends differ between different age groups
 - then I will give to a KNN-model data and we will look how accurately it will be recommending films to certain people based on their preferences in genres.
-# Tools I used
+# Tools I Used
 - **Python** - main programming language
 - **NumPy** - numerical operations
 - **Pandas** - data manipulations
@@ -27,7 +27,7 @@ We can clearly see that Barbie is far ahead from others, we can also see that Ma
 - Their clusters are spread and since that are big and thats why generaly we will see our model recommending them more frequently, model will be not that confident though.
 - Their clusters are very dense and since that we won't see them being recommended more often generally, but our model will be much more confident locally. 
 ### Dividing By Gender
-Our Next step will be breaking down data into male and female group, so we will see how trends differ based on gender.
+Our Next step will be dividing data into male and female groups, so we will see how trends differ based on gender.
 
 ![Most Popular Films Divided By Gender](charts/most_popular_films_divided_by_gender.png)
 
@@ -46,8 +46,8 @@ Now we will go further and divide our gender groups into age groups, so we will 
 So again the first thing we can see in these charts is that Barbie is the most popular film among women that are 18-29y.o. by far. That means that Barbie cluster is likely to be dense in that region. But we can see that Barbie appears in top-5 most popular films among every age group, which means that it is not only dense in some regions, but spread as well. That means that we will see model recommending this film generally pretty often and those recommendations will be very confident in many zones.
 
 Other two films from general top-3 films we can see in male charts. They appear in almost every age group, they dominate, but not that much comparing to Barbie in female charts. That means, that their clusters are big, but not especially dense, thats why, we know that their probability to be recommended is potentially high, but those recommendations won't be as confident as Barbies, but still confident in age groups below 40 y.o., later they are no more that popular.
-## Analysis Of Performance Of KNN-model predictions
-Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users. 
+## Analysis Of Performance Of KNN-model Predictions
+Now we are in the most exciting part: we will analyze how user-based KNN-model performs in recommendations for new users. And does it actually solves the cold start problem 
 
 **Lets consider the task:** we have dataset of users with their preferences in genres with their favorite films, new user just signed up for our app, provided all needed info and checked all the genres he/she likes. Our first priority is to recommend a film the user will like on their first visit, increasing the chance they stay engaged with the app. 
 ```python
@@ -66,14 +66,16 @@ def make_recommendation(user_info, mod, df_films):
   return (int(film_id[0]), 
           df_films[df_films['movie_id'] == film_id[0]].iloc[0, 1])
 ```
-**Code explanation:** since our user doesn't have any watched movies we can not use item-based model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. I gave the model data to learn(X - users info, y - favorite movies) and provided function make_recommendation to test comfortably.
+**Code explanation:** since our user doesn't have any watched movies we can not use SVD or item-based KNN-model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. I gave the model data to learn(X - users info, y - favorite movies) and provided function make_recommendation to test comfortably.
 ### Testing
 *Note: liked genres, get score 10, other we set to 4*
 
 **General recommendation:** lets consider two person: 1) 30 y.o. woman that likes Drama, Romance and Fantasy and 2) 20 y.o. man that likes Action, SciFi and Fantasy
 ```python
-rec_1 = make_recommendation(np.array([[30,0,4,10,4,10,4,4,4,10,4,4]]), mod, df_films)
-rec_2 = make_recommendation(np.array([[20,1,10,5,5,5,10,5,5,10,5,5]]), mod, df_films)
+rec_1 = make_recommendation(np.array([[30,0,4,10,4,10,4,4,4,10,4,4]]),
+                            mod, df_films)
+rec_2 = make_recommendation(np.array([[20,1,10,4,4,4,10,4,4,10,4,4]]),
+                            mod, df_films)
 ``` 
 According to my analysis, for woman I expect to see something from Pride and Prejudice, La La Land, Forrest Gump, Titanic, The Notebook(their genres approximately coincide with preferences and they are popular), especially Pride and Prejudice because it is the most popular film among women 30-39 y.o. For man I expect to see something from Inception, Matrix or Interstellar, especially first two, because they dominate in age group up to 40 y.o.
 ```
@@ -87,7 +89,7 @@ We got what we expected in general, user is happy.
 rec_1 = make_recommendation(np.array([[25,0,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
 rec_2 = make_recommendation(np.array([[25,1,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
 ```
-The model sugests:
+The model suggests:
 ```
 Recomendation for female-user: (11, 'Barbie')
 Recomendation for male-user: (30, 'Blade Runner 2049')
@@ -101,11 +103,13 @@ rec_1 = make_recommendation(np.array([[20,0,4,10,10,10,4,4,4,4,4,10]]),
 rec_2 = make_recommendation(np.array([[55,0,4,10,10,10,4,4,4,4,4,10]]),
                             mod, df_films)
 ```
-For the first one I expect to see Barbie, because preferences coincide with films genres and it is especially popular in this age group. For the second one it can be Barbie as well, but in this age Pride and Prejudice dominates so it will be more expected. La La Land is also possible since it is popular in age group 40-49, which can infuence recommendation, since it has more matches in genres than Pride and Prejudice.
+For the first one I expect to see Barbie, because preferences coincide with films genres and it is especially popular in this age group. For the second one it can be Barbie as well, but in this age Pride and Prejudice dominates so it will be more expected. La La Land is also possible since it is popular in age group 40-49, which can infuence recommendation and it also has more matches in genres than Pride and Prejudice.
 ```
 Recomendation for 20 y.o. woman: (11, 'Barbie')
 Recomendation for 55 y.o. woman: (8, 'Pride and Prejudice')
 ```
-Barbie for first case is obvious, as I said earlier it coincides with interests and popular in this age group. Second one is less precise since only half on genres are covered(La La Land would cover 3/4 genres), but it is more popular than other at that age group, so it is nice pick.
-# What I learned
+Barbie for the first case is obvious. Second one is less precise since only half on genres are covered(La La Land would cover 3/4 genres), but it is more popular than others at that age group, so it is nice pick. Both users enjoyed recommendations.
+# What I Learned
+I mastered my skills at understanding KNN and practised in making analysis. While doing research I also learned which methods are usually used in recommedation systems.
 # Conclusions
+As a result, we analyzed movie trends and built a reliable recommendation system for new users that solves the cold start problem, where SVD or item-based KNN cannot be applied. 
