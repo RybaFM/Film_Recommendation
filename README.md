@@ -123,7 +123,7 @@ I mastered my skills at understanding KNN and practised in making analysis. Whil
 - dataset is relatively small (300 users)
 - users have only one favorite movie, which limits preference representation
 - no real user feedback (yet)
-- dataset is synthetic and may bot fully reflect real user behavior
+- dataset is synthetic and may not fully reflect real user behavior
 # Future Improvements
 - collect user feedback
 - implement probability of each film being liked
