@@ -26,8 +26,10 @@ df_films = pd.read_csv('films.csv')
 
 def make_recommendation(user_info, mod, df_films):
   film_id = mod.predict(np.array([user_info]))
+  film_row = df_films[df_films['movie_id'] == film_id[0]]
   return (int(film_id[0]),
-          df_films[df_films['movie_id'] == film_id[0]].iloc[0, 1])
+          film_row['film_name'].values[0],
+          film_row['movie_image_url'].values[0])
 
 @app.post("/recommend")
 def recommend(data: FormData):
@@ -35,7 +37,7 @@ def recommend(data: FormData):
     
     prediction = make_recommendation(input_features, model, df_films)
     
-    return {"recommended_movie": f"({int(prediction[0])}) {prediction[1]}"}
+    return {"movie_id": prediction[0], "movie_title": prediction[1], "movie_image_url": prediction[2]}
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 #python -m uvicorn main:app --reload

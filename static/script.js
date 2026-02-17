@@ -36,7 +36,19 @@ form.addEventListener("submit", function(event){
     .then(res => res.json())
     .then(res => {
         console.log("Server recommendation:", res);
-        alert("Recommended movie: " + res.recommended_movie);
+        alert("Recommended movie: " + res.movie_title);
     })
     .catch(err => console.error(err));
+});
+
+let clearButton = document.getElementById("clear-btn")
+
+clearButton.addEventListener("click", function(){
+    document.getElementById("name").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("gender").value == "";
+    const checkboxes = document.querySelectorAll('input[name="genre[]"]');
+    checkboxes.forEach((checkbox, index) => {
+        checkbox.checked = false;
+    });
 });
