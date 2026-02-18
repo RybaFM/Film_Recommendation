@@ -36,19 +36,22 @@ form.addEventListener("submit", function(event){
     .then(res => res.json())
     .then(res => {
         console.log("Server recommendation:", res);
-        alert("Recommended movie: " + res.movie_title);
+        document.getElementById("movieTitle").innerText = res.movie_title
+        document.getElementById("moviePoster").src = res.movie_image_url
+        document.getElementById("movieModal").style.display = "block";
     })
     .catch(err => console.error(err));
 });
 
+const modal = document.getElementById("movieModal");
+const closeBtn = document.getElementById("closeModal");
+
+closeBtn.onclick = function(){
+    modal.style.display = "none";
+}
+
 let clearButton = document.getElementById("clear-btn")
 
 clearButton.addEventListener("click", function(){
-    document.getElementById("name").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("gender").value == "";
-    const checkboxes = document.querySelectorAll('input[name="genre[]"]');
-    checkboxes.forEach((checkbox, index) => {
-        checkbox.checked = false;
-    });
+    document.getElementById("userForm").reset();
 });

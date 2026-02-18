@@ -1,36 +1,36 @@
 movie_id,film_name,Action,Drama,Comedy,Romance,SciFi,Horror,Thriller,Fantasy,Animation,Crime,movie_image_url
 1,Inception,1,0,0,0,1,0,1,1,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-2,Titanic,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-3,The Dark Knight,1,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-4,La La Land,0,1,1,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-5,Avengers,1,0,0,0,1,0,0,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-6,The Notebook,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-7,Interstellar,1,1,0,0,1,0,1,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-8,Pride and Prejudice,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-9,The Hangover,0,0,1,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-10,John Wick,1,0,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-11,Barbie,0,1,1,1,0,0,0,1,1,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-12,Gladiator,1,1,0,0,0,0,0,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-13,The Fault in Our Stars,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-14,Matrix,1,0,0,0,1,0,1,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-15,Forrest Gump,0,1,1,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-16,Shutter Island,0,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-17,The Conjuring,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-18,Deadpool,1,0,1,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-19,Harry Potter,0,1,0,0,0,0,0,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-20,Toy Story,0,0,1,0,0,0,0,0,1,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-21,Joker,0,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-22,The Godfather,0,1,0,0,0,0,0,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-23,The Shawshank Redemption,0,1,0,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-24,Parasite,0,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-25,The Wolf of Wall Street,0,1,1,0,0,0,0,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-26,Spider-Man,1,0,0,0,0,0,0,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-27,It,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-28,Up,0,1,1,0,0,0,0,0,1,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-29,The Social Network,0,1,0,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-30,Blade Runner 2049,1,1,0,0,1,0,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-31,The Lion King,0,1,0,0,0,0,0,0,1,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-32,Mad Max Fury Road,1,0,0,0,0,0,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-33,Get Out,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-34,Doctor Strange,1,0,0,0,1,0,0,1,0,0,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
-35,The Silence of the Lambs,0,1,0,0,0,1,1,0,0,1,https://m.media-amazon.com/images/M/MV5BZjhkNjM0ZTMtNGM5MC00ZTQ3LTk3YmYtZTkzYzdiNWE0ZTA2XkEyXkFqcGc@._V1_.jpg
+2,Titanic,0,1,0,1,0,0,0,0,0,0,https://www.originalfilmart.com/cdn/shop/products/titanic_1997_original_film_art_c6c3332c-ed9e-4247-bae7-5393c7b924a4_5000x.jpg?v=1617376443
+3,The Dark Knight,1,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/I/81rGCm0PyHL.jpg
+4,La La Land,0,1,1,1,0,0,0,0,0,0,https://cdn.posteritati.com/posters/000/000/067/357/la-la-land-md-web.jpg
+5,Avengers,1,0,0,0,1,0,0,1,0,0,https://i.ebayimg.com/images/g/wy8AAOSwGMFcv5s2/s-l1200.jpg
+6,The Notebook,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/I/81zHy+InA5L.jpg
+7,Interstellar,1,1,0,0,1,0,1,1,0,0,https://mir-s3-cdn-cf.behance.net/project_modules/hd_webp/8d8f28105415493.619ded067937d.jpg
+8,Pride and Prejudice,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/I/616z+uCD2IL.jpg
+9,The Hangover,0,0,1,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BNDI2MzBhNzgtOWYyOS00NDM2LWE0OGYtOGQ0M2FjMTI2NTllXkEyXkFqcGc@._V1_.jpg
+10,John Wick,1,0,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_FMjpg_UX1000_.jpg
+11,Barbie,0,1,1,1,0,0,0,1,1,0,https://m.media-amazon.com/images/I/61UWf0HV-DL.jpg
+12,Gladiator,1,1,0,0,0,0,0,0,0,1,https://m.media-amazon.com/images/I/71sj8Yt20qL.jpg
+13,The Fault in Our Stars,0,1,0,1,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BYTA4ODg5YWUtYmZiYy00Y2M4LWE0NjEtODE5MzhkYmJmZGEwXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+14,Matrix,1,0,0,0,1,0,1,1,0,0,https://i.ebayimg.com/images/g/5nMAAOSwb3plBMTO/s-l1200.jpg
+15,Forrest Gump,0,1,1,1,0,0,0,0,0,0,https://m.media-amazon.com/images/I/613ZgTigTpL.jpg
+16,Shutter Island,0,1,0,0,0,0,1,0,0,1,https://m.media-amazon.com/images/M/MV5BN2FjNWExYzEtY2YzOC00YjNlLTllMTQtNmIwM2Q1YzBhOWM1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+17,The Conjuring,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/M/MV5BMTM3NjA1NDMyMV5BMl5BanBnXkFtZTcwMDQzNDMzOQ@@._V1_FMjpg_UX1000_.jpg
+18,Deadpool,1,0,1,0,0,0,0,0,0,0,https://cinemalightboxes.com/cdn/shop/products/Deadpool.jpg?v=1621021501
+19,Harry Potter,0,1,0,0,0,0,0,1,0,0,https://filmartgallery.com/cdn/shop/files/Harry-Potter-and-the-Sorcerers-Stone-Vintage-Movie-Poster-Original_75ba2bef.jpg?v=1741709160
+20,Toy Story,0,0,1,0,0,0,0,0,1,0,https://m.media-amazon.com/images/I/71aBLaC4TzL.jpg
+21,Joker,0,1,0,0,0,0,1,0,0,1,https://www.tallengestore.com/cdn/shop/products/Joker_-_Joaquin_Phoenix_-_Hollywood_Action_Movie_Poster_2_f3dd3a67-c6c8-4631-b4f4-fdd9def1753e.jpg?v=1573629361
+22,The Godfather,0,1,0,0,0,0,0,0,0,1,http://i.ebayimg.com/00/s/MTYwMFgxMDY2/z/rpEAAOSwQatj8lI9/$_57.JPG?set_id=880000500F
+23,The Shawshank Redemption,0,1,0,0,0,0,0,0,0,0,https://i.ebayimg.com/images/g/McUAAOSw~e5ZW~ee/s-l1200.jpg
+24,Parasite,0,1,0,0,0,0,1,0,0,1,https://i.ebayimg.com/images/g/Z6IAAOSwRh9gjc-y/s-l1200.jpg
+25,The Wolf of Wall Street,0,1,1,0,0,0,0,0,0,1,https://m.media-amazon.com/images/M/MV5BMjIxMjgxNTk0MF5BMl5BanBnXkFtZTgwNjIyOTg2MDE@._V1_.jpg
+26,Spider-Man,1,0,0,0,0,0,0,1,0,0,https://i.ebayimg.com/00/s/MTYwMFgxMDY2/z/x10AAOSwHhZmK7jf/$_57.JPG?set_id=880000500F
+27,It,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/I/91XQ4feYRpL.jpg
+28,Up,0,1,1,0,0,0,0,0,1,0,https://m.media-amazon.com/images/M/MV5BNmI1ZTc5MWMtMDYyOS00ZDc2LTkzOTAtNjQ4NWIxNjYyNDgzXkEyXkFqcGc@._V1_.jpg
+29,The Social Network,0,1,0,0,0,0,0,0,0,0,https://m.media-amazon.com/images/M/MV5BMjlkNTE5ZTUtNGEwNy00MGVhLThmZjMtZjU1NDE5Zjk1NDZkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+30,Blade Runner 2049,1,1,0,0,1,0,1,0,0,0,https://m.media-amazon.com/images/I/71NPmBOdq7L.jpg
+31,The Lion King,0,1,0,0,0,0,0,0,1,0,https://www.bestmovieposters.co.uk/wp-content/uploads/2019/01/The-Lion-King.jpg
+32,Mad Max Fury Road,1,0,0,0,0,0,1,0,0,0,https://m.media-amazon.com/images/M/MV5BZDRkODJhOTgtOTc1OC00NTgzLTk4NjItNDgxZDY4YjlmNDY2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg
+33,Get Out,0,0,0,0,0,1,1,0,0,0,https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_.jpg
+34,Doctor Strange,1,0,0,0,1,0,0,1,0,0,https://i.ebayimg.com/images/g/3iYAAOSwO7haCROU/s-l1200.jpg
+35,The Silence of the Lambs,0,1,0,0,0,1,1,0,0,1,https://m.media-amazon.com/images/M/MV5BNDdhOGJhYzctYzYwZC00YmI2LWI0MjctYjg4ODdlMDExYjBlXkEyXkFqcGc@._V1_.jpg
