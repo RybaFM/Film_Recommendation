@@ -21,8 +21,19 @@ This data is synthetic and was created for educational purposes.
 - **Pandas** - data manipulations
 - **Matplotlib & Seaborn** - data visualization
 - **Scikit-learn** - making recommendations 
-- **HTML, CSS, JS** - frontend
+- **HTML, CSS, JavaScript** - frontend
 - **FastAPI** - backend
+# System Architecture
+
+The system consists of three main components:
+
+- Frontend (HTML, CSS, JavaScript) – collects user input  
+- Backend (FastAPI) – processes requests and runs the ML model  
+- Machine Learning Model (Scikit-learn KNN) – generates recommendations  
+
+Flow:
+
+User → Frontend → FastAPI → ML Model → FastAPI → Frontend → User
 # The Analysis
 Analysis is divided into two parts. First part will be dedicated to analysis of data itself. In the second part I will analyze how accurately my model is making recommendations.
 ## Analysis Of Data
@@ -147,7 +158,7 @@ This setup simulates a real-world scenario in which a new user joins an applicat
 
 *Note: liked genres get score 10, other we set to 4*
 
-**General recommendation:** lets consider a person: 30 y.o. woman that likes Drama, Romance and Fantas
+**General recommendation:** lets consider a person: 30 y.o. woman that likes Drama, Romance and Fantasy
 
 <p align="center">
   <img src="screenshots/gen_rec.jpg" width="350">
