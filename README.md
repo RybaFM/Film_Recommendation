@@ -65,17 +65,78 @@ pipe = Pipeline([
 ])
 
 mod = GridSearchCV(estimator=pipe,
-                   param_grid={'model__n_neighbors':[3,4,5,6,7,8,9,10], 'model__weights': ['uniform', 'distance']},
-                   cv=3)
-
-mod.fit(X, y)
-def make_recommendation(user_info, mod, df_films):
-  film_id = mod.predict(user_info)
-  return (int(film_id[0]), 
-          df_films[df_films['movie_id'] == film_id[0]].iloc[0, 1])
+                   param_grid={'model__n_neighbors':[3,4,5,6,7,8,9,10],
+                               'model__weights': ['uniform', 'distance']},
+                   cv=3,
+                   scoring=make_scorer(genre_coincidence_scorer),
+                   n_jobs=-1)
 ```
-**Code explanation:** since our user doesn't have any watched movies we can not use SVD or item-based KNN-model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. I gave the model data to learn(X - users info, y - favorite movies) and provided function make_recommendation to test comfortably.
-### Testing
+**Code explanation:** since our user doesn't have any watched movies we can not use SVD or item-based KNN-model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. Model decides which parameters are the best by using my custom scorer. Code for scorer is below:
+```python
+def genre_coincidence_scorer(y_true, y_pred):
+  hits = 0
+  y_true = y_true.tolist()
+  for i in range(len(y_true)):
+    movieTrue = y_true[i]
+    moviePred = y_pred[i]
+
+    true_genres = df_films[df_films['movie_id'] == movieTrue].iloc[0, 2:]
+    pred_genres = df_films[df_films['movie_id'] == moviePred].iloc[0, 2:]
+
+    countTrue_genres = (true_genres == 1).sum()
+    if countTrue_genres == 0: continue
+    countPred_genres = (pred_genres == 1).sum()
+
+    coincidence = ((true_genres == 1) & (pred_genres == 1)).sum()
+
+    if countTrue_genres >= 5:
+      if (coincidence/countTrue_genres >= 0.8 and
+          countPred_genres/countTrue_genres <= 1.2):
+        hits+=1
+    elif countTrue_genres in (3, 4):
+      if (countTrue_genres - coincidence <= 1 and
+          countPred_genres-countTrue_genres <= 1):
+        hits+=1
+    elif countTrue_genres == 2:
+      if ((countTrue_genres - coincidence <= 1 and
+           countPred_genres == countTrue_genres) or
+            (countTrue_genres == coincidence and
+             countPred_genres - countTrue_genres <= 1)):
+        hits+=1
+    else:
+      if (countTrue_genres == coincidence and
+          countPred_genres-countTrue_genres <= 1):
+        hits+=1
+  return hits/len(y_true)
+```
+Traditional accuracy is too strict for this task, because it considers a prediction correct only if the exact same movie is predicted. However, in real recommendation systems, recommending a movie with very similar genres is still a successful outcome. Therefore, I implemented a custom metric called genre_coincidence_scorer, which evaluates how similar the predicted movie is to the true favorite movie based on genre overlap.
+
+The scorer compares the genres of the predicted and actual movies and counts a recommendation as correct if the genres sufficiently coincide. The required level of coincidence depends on how many genres the true movie has. This approach allows the model to be evaluated in a way that better reflects real-world recommendation quality rather than strict exact matching.
+### Estimating
+For estimating how well my model performs we will filter out all the films that have less than 10 fans, because chance of getting them as recommedation is noticeably lower. We split data into training and testing sets, using 80% of data for learning and 20% for estimating performance. To assess the recommendation quality more comprehensively, I implemented three custom evaluation metrics:
+- topK_hit_rate - measures the percentage of users whose actual favorite movie appears among the K nearest neighbors. This metric evaluates whether the correct movie exists within the local neighborhood.
+- topK_genre_hit_rate - measures the percentage of users who have at least one movie among their K nearest neighbors that is sufficiently similar in terms of genres. This reflects whether the neighborhood contains relevant recommendations.
+- genre_hit_rate - measures the percentage of users for whom the final predicted movie is sufficiently similar to their true favorite movie in terms of genre overlap. This metric reflects the practical quality of the model’s final recommendations.
+```python
+Accuracy: 26%
+Top-K Hit Rate: 68%
+Top-K Genre Hit Rate: 98%
+Genre Hit Rate: 72%
+```
+Accuracy.
+The raw accuracy is 26%, which may appear relatively low. However, exact movie prediction is not the primary objective of a recommendation system. In real-world scenarios, recommending a similar and relevant movie is often sufficient, even if it is not the exact movie the user selected. Therefore, accuracy alone is not an adequate measure of recommendation quality in this task.
+
+Top-K Hit Rate.
+The Top-K Hit Rate is 68%, meaning that in approximately two-thirds of cases, the user’s actual favorite movie appears among the K nearest neighbors. This indicates that the model successfully captures meaningful patterns in user preferences and forms relevant local neighborhoods.
+
+Top-K Genre Hit Rate.
+The Top-K Genre Hit Rate reaches 98%, showing that in almost all cases, at least one movie among the neighbors is sufficiently similar in terms of genres. This confirms that the model consistently identifies relevant candidate movies, even when the exact match is not present.
+
+Genre Hit Rate.
+The Genre Hit Rate is 72%, and this is the most important metric in this project. It measures how often the final recommended movie is similar enough to the user’s true favorite movie based on genre overlap. This result indicates that the model produces relevant and meaningful recommendations in the majority of cases.
+
+The model demonstrates strong performance, achieving a 72% genre-level hit rate, indicating that it successfully recommends relevant movies in the majority of cases. This confirms that user-based KNN is an effective approach for solving the cold start recommendation problem when user preference features are available.
+### Real Testing
 *Note: liked genres, get score 10, other we set to 4*
 
 **General recommendation:** lets consider two person: 1) 30 y.o. woman that likes Drama, Romance and Fantasy and 2) 20 y.o. man that likes Action, SciFi and Fantasy
