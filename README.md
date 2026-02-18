@@ -1,12 +1,12 @@
 # Introduction
-The goal of the project is to analyse user preferences in movies and built a machine learning-based recommendation system. The system focuses on recommending films to new users based on their demografic information and genre preferences.
+The goal of the project is to analyse user preferences in movies and build a machine learning-based recommendation system. The system focuses on recommending films to new users based on their demografic information and genre preferences.
 # Background
-I recently started studying machine learning, especially using Scikit-learn. I wanted to apply my new skills in practice and gain a deeper understanding of the KNN algorithm. I decided to build a user-based KNN recommendation system that addresses the cold start problem, where SVD or item-based methods cannot be applied due to the lack of user history.
+This project was created to apply my machine learning knowledge in practice, with a focus on understanding the K-Nearest Neighbors (KNN) algorithm in real-world scenarios. I built a user-based KNN recommendation system designed to solve the cold start problem, where traditional approaches such as SVD or item-based collaborative filtering cannot be applied due to the lack of user interaction history.
 ## In this project I will be aiming to:
 - find out what are most popular films among users
 - then I will divide data into male and female groups and analyse trends differences between genders
 - then I will go further and divide existing groups into age subgroups and analyse how trends differ between different age groups
-- then I will give to a KNN-model data and we will look how accurately it will be recommending films to certain people based on their preferences in genres.
+- then I will give to a KNN-model data and we will look how accurately it makes recommendations.
 # Dataset
 The dataset contains 300 users with information about:
 - age
@@ -21,6 +21,8 @@ This data is synthetic and was created for educational purposes.
 - **Pandas** - data manipulations
 - **Matplotlib & Seaborn** - data visualization
 - **Scikit-learn** - making recommendations 
+- **HTML, CSS, JS** - frontend
+- **FastAPI** - backend
 # The Analysis
 Analysis is divided into two parts. First part will be dedicated to analysis of data itself. In the second part I will analyze how accurately my model is making recommendations.
 ## Analysis Of Data
@@ -137,49 +139,61 @@ The Genre Hit Rate is 72%, and this is the most important metric in this project
 
 The model demonstrates strong performance, achieving a 72% genre-level hit rate, indicating that it successfully recommends relevant movies in the majority of cases. This confirms that user-based KNN is an effective approach for solving the cold start recommendation problem when user preference features are available.
 ### Real Testing
-*Note: liked genres, get score 10, other we set to 4*
+For more realistic testing, I developed a simple web interface that allows users to interact with the recommendation system. The webpage enables a user to enter their age, gender, and select their preferred movie genres. This data is then sent to the backend via an HTTP request.
 
-**General recommendation:** lets consider two person: 1) 30 y.o. woman that likes Drama, Romance and Fantasy and 2) 20 y.o. man that likes Action, SciFi and Fantasy
-```python
-rec_1 = make_recommendation(np.array([[30,0,4,10,4,10,4,4,4,10,4,4]]),
-                            mod, df_films)
-rec_2 = make_recommendation(np.array([[20,1,10,4,4,4,10,4,4,10,4,4]]),
-                            mod, df_films)
-``` 
-According to my analysis, for woman I expect to see something from Pride and Prejudice, La La Land, Forrest Gump, Titanic, The Notebook(their genres approximately coincide with preferences and they are popular), especially Pride and Prejudice because it is the most popular film among women 30-39 y.o. For man I expect to see something from Inception, Matrix or Interstellar, especially first two, because they dominate in age group up to 40 y.o.
-```
-Recomendation for first user(30 y.o. woman): (6, 'The Notebook')
-Recomendation for second user(20 y.o. man): (14, 'Matrix')
-```
-We got what we expected in general, user is happy.
+The backend is implemented using FastAPI and loads the trained machine learning model. Based on the provided user information, the model generates a recommendation and returns the movie title to the frontend, where it is displayed to the user.
 
-**Gender difference:** two people, same interests: Action and Fantasy, same age: 25 y.o., but different genders
-```python
-rec_1 = make_recommendation(np.array([[25,0,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
-rec_2 = make_recommendation(np.array([[25,1,10,4,4,4,4,4,4,10,4,4]]), mod, df_films)
-```
+This setup simulates a real-world scenario in which a new user joins an application and immediately receives a personalized recommendation. It also demonstrates how the machine learning model can be integrated into a complete end-to-end system, including frontend, backend, and model deployment.
+
+*Note: liked genres get score 10, other we set to 4*
+
+**General recommendation:** lets consider a person: 30 y.o. woman that likes Drama, Romance and Fantas
+
+<p align="center">
+  <img src="screenshots/gen_rec.jpg" width="350">
+</p>
+
+According to my analysis, for woman I expect to see something from Pride and Prejudice, La La Land, Forrest Gump, Titanic, The Notebook(their genres approximately coincide with preferences and they are popular), especially Pride and Prejudice because it is the most popular film among women 30-39 y.o.
+
+<p align="center">
+  <img src="screenshots/gen_rec_res.jpg" width="250">
+</p>
+
+We got what we expected in general. Recommendation is relevant based on genre overlap.
+
+**Gender difference:** two people, same interests: Action and Drama, same age: 25 y.o., but different genders
+
+<p align="center">
+  <img src="screenshots/gend_diff_rec1.jpg" width="350">
+  <img src="screenshots/gend_diff_rec2.jpg" width="350">
+</p>
+
 The model suggests:
-```
-Recomendation for female-user: (11, 'Barbie')
-Recomendation for male-user: (30, 'Blade Runner 2049')
-```
-Barbie is very popular among women and Blade Runner 2049 is quite popular among men. Each recommendation matches one of the users genre preferences. At first glance, these suggestions might not seem perfectly aligned with the raw genre inputs, but I would still consider them solid, since they seem like realistic recommendations. I assume that each user is satisfied.
 
-**Age difference:** two people, same interests: Drama, Comedy, Romance, Crime, same gender, but different age: 20 y.o. and 55 y.o.
-```python
-rec_1 = make_recommendation(np.array([[20,0,4,10,10,10,4,4,4,4,4,10]]),
-                            mod, df_films)
-rec_2 = make_recommendation(np.array([[55,0,4,10,10,10,4,4,4,4,4,10]]),
-                            mod, df_films)
-```
-For the first one I expect to see Barbie, because preferences coincide with films genres and it is especially popular in this age group. For the second one it can be Barbie as well, but in this age Pride and Prejudice dominates so it will be more expected. La La Land is also possible since it is popular in age group 40-49, which can infuence recommendation and it also has more matches in genres than Pride and Prejudice.
-```
-Recomendation for 20 y.o. woman: (11, 'Barbie')
-Recomendation for 55 y.o. woman: (8, 'Pride and Prejudice')
-```
-Barbie for the first case is obvious. Second one is less precise since only half on genres are covered(La La Land would cover 3/4 genres), but it is more popular than others at that age group, so it is nice pick. Both users enjoyed recommendations.
+<p align="center" style="display:flex">
+  <img src="screenshots/gend_diff_rec1_res.jpg" width="250">
+  <img src="screenshots/gend_diff_rec2_res.jpg" width="250">
+</p>
+
+The Notebook is appropriate recommendation in this case since genres sufficiently coincide and movie is popular among women. Interstellar is not that appropriate, since it has much more than 2 genres, nevertheless all the listed genres by user are present in the film.
+
+**Age difference:** two people, same interests: Drama, Comedy, Romance, same gender: female, but different age: 20 y.o. and 55 y.o.
+
+<p align="center">
+  <img src="screenshots/age_diff_rec1.jpg" width="350">
+  <img src="screenshots/age_diff_rec2.jpg" width="350">
+</p>
+
+For the first one I expect to see La La Land or Forrest Gump, because preferences perfectly coincide with films genres and they are pretty popular, I can also expect Pride and Prejudice, Titanic, The Notebook, but they will appear less likely, because they have less genre coincidences, but they are still relevant. For the second one I expect to see Pride and Prejudice, since it is most popular among given age, but it can be something from listed above as well.
+
+<p align="center" style="display:flex">
+  <img src="screenshots/age_diff_rec1_res.jpg" width="250">
+  <img src="screenshots/age_diff_rec2_res.jpg" width="250">
+</p>
+
+La La Land for the first case is perfect recommendation (3/3 genres). Second one is also good recommendation, because 2 of 3 preferences are covered, film is not listed in popular films among that age, but it is popular among younger groups. Both recommendations are highly relevant based on genre overlap and popularity.
 # What I Learned
-I mastered my skills at understanding KNN and practised in making analysis. While doing research I also learned which methods are usually used in recommedation systems.
+I mastered my skills at understanding KNN and practised in making analysis. While doing research I also learned which methods are usually used in recommedation systems. I reminded myself of times when I used to work with web development.
 # Limitations
 - dataset is relatively small (300 users)
 - users have only one favorite movie, which limits preference representation
@@ -191,4 +205,4 @@ I mastered my skills at understanding KNN and practised in making analysis. Whil
 - implement Naive Bayes for deciding if feedback was positive or negative and update films probability of being liked
 - make KNN recommend only those films that have relatively high probability of being liked
 # Conclusions
-As a result, we analyzed movie trends and built a reliable recommendation system for new users that solves the cold start problem, where SVD or item-based KNN cannot be applied. 
+As a result, we analyzed movie trends and built a recommendation system that effectively addresses the cold start problem when demographic and preference features are available, where SVD or item-based KNN cannot be applied. 
