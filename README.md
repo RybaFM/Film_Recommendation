@@ -86,6 +86,10 @@ mod = GridSearchCV(estimator=pipe,
 ```
 **Code explanation:** since our user doesn't have any watched movies we can not use SVD or item-based KNN-model yet, but user-based suits nice. Our model finds nearest points to point of new user and then chooses the most popular film among these neighbors and then recommends it to our user. We also need to consider that not all the data has similar scale, so I used StandardScaler, so all the parameters contribute comparably to the distance calculation. Using GridSearchCV, I let the model decide which weight is better and which count of neighbours is the best(from 3 to 10), the range is reasonable since most popular films(top-15 from general list) have at least 7 fans, testing too few or too many could under- or over-generalize the recommendations. Model decides which parameters are the best by using my custom scorer. Code for scorer is below:
 ```python
+movie_genres_dict = {}
+for i, row in df_films.iterrows():
+    movie_genres_dict[row['movie_id']] = row.iloc[2:].values
+
 def genre_coincidence_scorer(y_true, y_pred):
   hits = 0
   y_true = y_true.tolist()
@@ -93,14 +97,14 @@ def genre_coincidence_scorer(y_true, y_pred):
     movieTrue = y_true[i]
     moviePred = y_pred[i]
 
-    true_genres = df_films[df_films['movie_id'] == movieTrue].iloc[0, 2:]
-    pred_genres = df_films[df_films['movie_id'] == moviePred].iloc[0, 2:]
+    true_genres = movie_genres_dict[movieTrue]
+    pred_genres = movie_genres_dict[moviePred]
 
-    countTrue_genres = (true_genres == 1).sum()
+    countTrue_genres = true_genres.sum()
     if countTrue_genres == 0: continue
-    countPred_genres = (pred_genres == 1).sum()
+    countPred_genres = pred_genres.sum()
 
-    coincidence = ((true_genres == 1) & (pred_genres == 1)).sum()
+    coincidence = (true_genres & pred_genres).sum()
 
     if countTrue_genres >= 5:
       if (coincidence/countTrue_genres >= 0.8 and
